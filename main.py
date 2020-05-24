@@ -6,12 +6,14 @@ response = requests.get(URL)
 
 
 if response.status_code == 200:
-    print('nitido')
+    print('URL:'+URL)
+    
     
     soup = BeautifulSoup(response.text, 'html.parser')
     tag = soup.find_all(class_='ent-name')
+    print('Conexion Nitida, Cantidad de resutaldos:'+ str(len(tag)) )
     
-    print(len(tag))
+
     for i in range(0,len(tag)):
         response_detail = requests.get(URL_DETAIL+tag[i].attrs['href'])
         soup_detail = BeautifulSoup(response_detail.text, 'html.parser')
